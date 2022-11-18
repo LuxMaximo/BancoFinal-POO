@@ -18,12 +18,12 @@ public class ClienteDAOImpl implements ClienteDAO{
 	public ClienteDAOImpl() {
 		super();
 	}
-
+/*
 	public ClienteDAOImpl(EntityManager manager, EntityManagerFactory factory) {
 		super();
 		this.manager = manager;
 		this.factory = factory;
-	}	
+	}*/	
 	public ClienteDAOImpl(EntityManager manager) {
 		super();
 		this.manager = manager;
@@ -44,14 +44,14 @@ public class ClienteDAOImpl implements ClienteDAO{
 	
 	@Override
 	public List<Cliente> buscarXNombre(String nombre) {
-		Query query =  manager.createQuery("from Titular t where t.nombre like concat('%', :nombre, '%')");
+		Query query =  manager.createQuery("from Cliente t where t.nombre like concat('%', :nombre, '%')");
 		query.setParameter("nombre", nombre);
 		return query.getResultList();
 	}
 	
 	@Override
 	public Cliente buscarXID(Integer idCliente) {
-		Query query =  manager.createQuery("from Titular t where t.id=:idTitular");
+		Query query =  manager.createQuery("from Cliente t where t.id=:idCliente");
 		query.setParameter("idCliente", idCliente);
 		return (Cliente) query.getSingleResult();
 	}
