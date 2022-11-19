@@ -91,7 +91,7 @@ public class VentanaPrincipal extends JFrame {
 		JMenuItem mntmCerrar = new JMenuItem("Salir del programa");
 		mntmCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				System.exit(1);
 			}
 		});
 		mnEntidades.add(mntmCerrar);
