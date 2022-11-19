@@ -108,7 +108,6 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	
 	private void registrarNuevoCliente() {
 		Long dni = Long.parseLong(textDNI.getText());
-		//clientePresenter = new ClientePresenter(formularioAltaCliente);
 		clientePresenter.registrarCliente(textNombre.getText(), textEmail.getText(), dni);
 		this.dispose();
 		}
@@ -121,8 +120,10 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	}
 	
 	private void actualizarCliente(Integer idCliente) {
-		Long dni = Long.parseLong(textDNI.getText());
-		clientePresenter.actualizarCliente(idCliente, textNombre.getText(), textEmail.getText(), dni);
+		Long dni=0l;
+		clientePresenter.actualizarCliente(idCliente, textNombre.getText(), textEmail.getText(), dni.parseLong(textDNI.getText()));
+		System.out.println(dni);
+		System.out.println(dni.TYPE);
 		this.dispose();		
 	}
 	

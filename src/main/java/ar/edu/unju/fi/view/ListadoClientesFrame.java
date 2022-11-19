@@ -60,7 +60,7 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 		
 		
 		setTitle("Listado de Clientes");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 805, 460);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -115,7 +115,7 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 				altaClienteFrame.setVisible(true);
 				setTableModelFor(table);
 
-				visualizarListadoClientes();
+				
 			}
 		});
 		btnAgregar.setBounds(180, 10, 89, 23);
@@ -138,7 +138,6 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 					altaCliente.setVisible(true);
 					setTableModelFor(table);
 
-					visualizarListadoClientes();
 				}else {
 					JOptionPane.showMessageDialog(null, "No selecciono ningun cliente.");
 				}
