@@ -5,19 +5,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ar.edu.unju.fi.view.ListadoClientesFrame;
+import ar.edu.unju.fi.presenter.LoginPresenter;
+import ar.edu.unju.fi.presenter.views.IViewlogin;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrame implements IViewlogin{
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtPassword;
-
+	private LoginPresenter loginPresenter;
 	/**
 	 * Launch the application.
 	 */
@@ -70,7 +79,27 @@ public class LoginFrame extends JFrame{
 		contentPane.add(txtPassword);
 		
 		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//login();
+				loginPresenter.validar(txtUsuario.getText(), txtPassword.getText());
+			}
+		});
 		btnIngresar.setBounds(101, 109, 104, 31);
 		contentPane.add(btnIngresar);
+	}
+
+	@Override
+	public void visualizarResultado(String resultado) {
+		JOptionPane.showMessageDialog(this, resultado);
+		txtUsuario.setText(null);
+		txtPassword.setText(null);
+	}
+
+	@Override
+	public void visualizarMain() {
+		this.setVisible(false);
+		ListadoClientesFrame  titulares = new ListadoClientesFrame();
+		titulares.setVisible(true);
 	}
 }

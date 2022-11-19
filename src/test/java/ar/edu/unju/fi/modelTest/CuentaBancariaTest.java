@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.modelTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,6 +14,10 @@ import ar.edu.unju.fi.dao.ClienteDAO;
 import ar.edu.unju.fi.dao.CuentaBancariaDAO;
 import ar.edu.unju.fi.dao.impl.ClienteDAOImpl;
 import ar.edu.unju.fi.dao.impl.CuentaBancariaDAOImpl;
+import ar.edu.unju.fi.model.CajaAhorro;
+import ar.edu.unju.fi.model.Cliente;
+import ar.edu.unju.fi.model.CuentaBancaria;
+import ar.edu.unju.fi.model.CuentaCorriente;
 import ar.edu.unju.fi.util.ManagerContext;
 
 @DisplayName("Pruebas unitarias cuentas bancarias JPA")
