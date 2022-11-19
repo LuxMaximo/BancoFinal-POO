@@ -1,4 +1,4 @@
-package ar.edu.unju.fi.model;
+package ar.edu.unju.fi.modelTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ar.edu.unju.fi.dao.ClienteDAO;
 import ar.edu.unju.fi.dao.impl.ClienteDAOImpl;
+import ar.edu.unju.fi.model.Cliente;
 import ar.edu.unju.fi.util.ManagerContext;
 
 

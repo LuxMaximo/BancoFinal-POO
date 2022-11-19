@@ -4,8 +4,8 @@ import java.util.List;
 
 import ar.edu.unju.fi.model.Usuario;
 
-
 public interface UsuarioDAO {
+	
 	List<Usuario> obtenerLista();
 
 	void guardar(Usuario usuario);
