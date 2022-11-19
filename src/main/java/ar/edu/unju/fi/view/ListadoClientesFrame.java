@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class ListadoClientesFrame extends JFrame implements IViewClientes{
@@ -25,6 +26,7 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 	private JPanel contentPane;
 	private ListadoClientesPresenter presenter;
 	private JTable table;
+	private JTextField textBuscar;
 
 	@Override
 	public JTable getTable() {
@@ -74,13 +76,56 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(31, 47, 725, 344);
-		
-		
-		
 		contentPane.add(scrollPane);
 		
+
+		//Boton Editar
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				if (row != -1) {
+					Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
+					
+					AltaClienteFrame altaCliente = new AltaClienteFrame(idCliente);
+					altaCliente.setModal(true);
+					altaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					altaCliente.setVisible(true);
+					setTableModelFor(table);
+					
+					visualizarListadoClientes();
+				}else {
+					JOptionPane.showMessageDialog(null, "No selecciono ningun cliente.");
+				}
+			}
+		});
+		btnEditar.setBounds(133, 10, 89, 23);
+		contentPane.add(btnEditar);
+		
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setTableModelFor(table);
+				presenter.buscarClientesBy(textBuscar.getText());
+			}
+		});
+		btnBuscar.setBounds(690, 10, 89, 23);
+		contentPane.add(btnBuscar);
+		
+		textBuscar = new JTextField();
+		textBuscar.setBounds(496, 11, 183, 20);
+		contentPane.add(textBuscar);
+		textBuscar.setColumns(10);
+		
+		
+		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		table.setRowSelectionAllowed(true);
+		setTableModelFor(table);
+		/*table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
@@ -99,52 +144,14 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 		table.getColumnModel().getColumn(2).setPreferredWidth(187);
 		table.getColumnModel().getColumn(3).setPreferredWidth(52);
 		table.getColumnModel().getColumn(4).setPreferredWidth(134);
+		*/
 		scrollPane.setViewportView(table);
 		
 		visualizarListadoClientes();
-
 		
 		
-		//Boton Agregar
-		JButton btnAgregar = new JButton("Agregar");
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AltaClienteFrame altaClienteFrame = new AltaClienteFrame(null);
-				altaClienteFrame.setModal(true);
-				altaClienteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				altaClienteFrame.setVisible(true);
-				setTableModelFor(table);
-
-				
-			}
-		});
-		btnAgregar.setBounds(180, 10, 89, 23);
-		contentPane.add(btnAgregar);
 		
 		
-		//Boton Editar
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row = table.getSelectedRow();
-				if (row != -1) {
-					Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
-					
-					AltaClienteFrame altaCliente = new AltaClienteFrame(idCliente);
-					altaCliente.setModal(true);
-					altaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					altaCliente.setVisible(true);
-					setTableModelFor(table);
-
-				}else {
-					JOptionPane.showMessageDialog(null, "No selecciono ningun cliente.");
-				}
-			}
-		});
-		btnEditar.setBounds(336, 10, 89, 23);
-		contentPane.add(btnEditar);
 		
 	}
 	
@@ -170,9 +177,6 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 				table.getColumnModel().getColumn(2).setPreferredWidth(187);
 				table.getColumnModel().getColumn(3).setPreferredWidth(52);
 				table.getColumnModel().getColumn(4).setPreferredWidth(134);
-
-				visualizarListadoClientes();
-
 	}
 	
 	@Override

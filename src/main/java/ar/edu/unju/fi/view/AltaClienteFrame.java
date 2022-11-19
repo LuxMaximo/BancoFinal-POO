@@ -26,6 +26,7 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	
 	private ClientePresenter clientePresenter;
 	private IViewCliente formularioAltaCliente;
+	private JTextField textEstado;
 
 	
 	/**
@@ -53,7 +54,7 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		
 		setTitle("Alta Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 205);
+		setBounds(100, 100, 410, 278);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -102,8 +103,17 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 
 			}
 		});
-		btnGuardar.setBounds(132, 132, 89, 23);
+		btnGuardar.setBounds(147, 194, 89, 23);
 		contentPane.add(btnGuardar);
+		
+		JLabel lblEstado = new JLabel("Estado*");
+		lblEstado.setBounds(20, 129, 46, 14);
+		contentPane.add(lblEstado);
+		
+		textEstado = new JTextField();
+		textEstado.setBounds(120, 126, 180, 20);
+		contentPane.add(textEstado);
+		textEstado.setColumns(10);
 	}
 	
 	private void registrarNuevoCliente() {
@@ -121,7 +131,12 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	
 	private void actualizarCliente(Integer idCliente) {
 		Long dni=0l;
-		clientePresenter.actualizarCliente(idCliente, textNombre.getText(), textEmail.getText(), dni.parseLong(textDNI.getText()));
+		boolean estado = true;
+		
+		if (textEstado.getText().length()== 5) {
+			estado = false;
+		}
+		clientePresenter.actualizarCliente(idCliente, textNombre.getText(), textEmail.getText(), dni.parseLong(textDNI.getText()), estado);
 		System.out.println(dni);
 		System.out.println(dni.TYPE);
 		this.dispose();		
