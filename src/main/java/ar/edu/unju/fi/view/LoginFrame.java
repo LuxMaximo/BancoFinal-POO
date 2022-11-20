@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ar.edu.unju.fi.view.ListadoClientesFrame;
 import ar.edu.unju.fi.presenter.LoginPresenter;
 import ar.edu.unju.fi.presenter.views.IViewlogin;
 
@@ -47,6 +46,7 @@ public class LoginFrame extends JFrame implements IViewlogin{
 	 * Create the frame.
 	 */
 	public LoginFrame() {
+		loginPresenter = new LoginPresenter(this);
 		setTitle("Ingreso Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 346, 190);
@@ -99,7 +99,7 @@ public class LoginFrame extends JFrame implements IViewlogin{
 	@Override
 	public void visualizarMain() {
 		this.setVisible(false);
-		ListadoClientesFrame  titulares = new ListadoClientesFrame();
-		titulares.setVisible(true);
+		VentanaPrincipal ventana = new VentanaPrincipal();
+		ventana.setVisible(true);
 	}
 }
