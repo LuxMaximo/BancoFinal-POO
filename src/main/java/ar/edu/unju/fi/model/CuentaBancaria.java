@@ -18,7 +18,7 @@ public class CuentaBancaria {
 	private Long id;
 	private Integer numCuenta;
 	private Date fechaCreacion;
-	private Double saldo;
+	protected Double saldo;
 	private Cliente cliente;
 	
 	 public CuentaBancaria() {}
@@ -38,7 +38,9 @@ public class CuentaBancaria {
 		return numCuenta;
 	}
 
-
+	public void setNumCuenta(Integer numCuenta) {
+		this.numCuenta = numCuenta;
+	}
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cliente_id", nullable = false)
@@ -58,10 +60,6 @@ public class CuentaBancaria {
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public void setNumCuenta(Integer numCuenta) {
-		this.numCuenta = numCuenta;
 	}
 
 
@@ -89,6 +87,16 @@ public class CuentaBancaria {
 	}
 	
 	
+	public Double depositar(Double importe) {
+		return this.saldo = this.saldo + importe;
+	}
+	
+	public Double extraer(Double importe) {
+		if(this.saldo >= importe) {
+			this.saldo = this.saldo - importe;
+		}
+		return this.saldo;
+	}
 	
 	
 }

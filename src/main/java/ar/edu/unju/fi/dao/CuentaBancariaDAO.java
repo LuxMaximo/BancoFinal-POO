@@ -11,6 +11,6 @@ public interface CuentaBancariaDAO {
 	
 	void guardar(CuentaBancaria cuenta);
 
-	CuentaBancaria buscarXnumeroCuenta(String numeroCuenta);
+	CuentaBancaria buscarXnumeroCuenta(Integer numeroCuenta);
 	
 }

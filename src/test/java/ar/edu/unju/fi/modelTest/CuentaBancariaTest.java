@@ -62,4 +62,16 @@ public class CuentaBancariaTest {
 		assertEquals(2, cuentas.size());
 	}
 	
+	@Test
+	@DisplayName("Prueba realizar deposito")
+	@Order(3)
+	void realizarDeposito() {
+		Integer numCuenta = 2;
+		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXnumeroCuenta(numCuenta);
+		Double importeDeposito = 50d;
+		cuenta.depositar(importeDeposito);
+		System.out.println(cuenta);
+		clienteDAO.actualizar(cliente2);
+		assertEquals(2050d,cuenta.getSaldo()+importeDeposito);
+	}
 }

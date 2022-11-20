@@ -30,9 +30,9 @@ public class CuentaBancariaDAOImpl implements CuentaBancariaDAO{
 	}
 
 	@Override
-	public CuentaBancaria buscarXnumeroCuenta(String numeroCuenta) {
-		Query query = manager.createQuery("from CuentaBancaria c where c.numeroCuenta = :numeroCuenta");
-		query.setParameter("numeroCuenta", numeroCuenta);
+	public CuentaBancaria buscarXnumeroCuenta(Integer numeroCuenta) {
+		Query query = manager.createQuery("from cuentabancaria c where c.numero_cuenta = :numeroCuenta");
+		query.setParameter("numero_cuenta", numeroCuenta);
 		return (CuentaBancaria) query.getSingleResult();
 	}
 
