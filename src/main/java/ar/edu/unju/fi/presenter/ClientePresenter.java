@@ -38,8 +38,9 @@ public class ClientePresenter {
 		Cliente cliente = (Cliente)clienteDAO.buscarXID(id);
 		formularioAltaCliente.setInputsText(cliente.getNombre(),  cliente.getEmail(), cliente.getDni(), cliente.getEstado());	
 	}
-	public void actualizarCliente(Integer idCliente, String nombre, String email , Long dni) {
-		clienteModel = new Cliente(dni, nombre, email);
+	
+	public void actualizarCliente(Integer idCliente, String nombre, String email , Long dni, boolean estado) {
+		clienteModel = new Cliente(dni, nombre, email, estado);
 		clienteModel.setId(idCliente);
 		clienteDAO.actualizar(clienteModel);
 	}

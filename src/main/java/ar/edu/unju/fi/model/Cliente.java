@@ -25,7 +25,13 @@ public class Cliente {
 		this.estado = true;
 	}
 	
-	
+	public Cliente(Long dni, String nombre, String email, boolean estado) {
+		super();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.email = email;
+		this.estado = estado;
+	}
 	
 	
 	//---------Getters & Setters------

@@ -88,7 +88,7 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		textEmail.setBounds(120, 87, 180, 20);
 		contentPane.add(textEmail);
 		
-		buscarClienteBy(idCliente);
+		
 		
 		JButton btnGuardar = new JButton("Guardar");
 
@@ -96,6 +96,7 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 			public void actionPerformed(ActionEvent e) {
 
 				if (idCliente != null) {
+					
 					actualizarCliente(idCliente);
 				}else {
 					registrarNuevoCliente();	

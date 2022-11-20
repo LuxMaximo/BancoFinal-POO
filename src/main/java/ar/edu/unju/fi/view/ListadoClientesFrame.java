@@ -60,7 +60,6 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 		
 		presenter = new ListadoClientesPresenter(this);
 		
-		
 		setTitle("Listado de Clientes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 805, 460);
