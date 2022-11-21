@@ -13,4 +13,6 @@ public interface CuentaBancariaDAO {
 
 	CuentaBancaria buscarXnumeroCuenta(Integer numeroCuenta);
 	
+	void depositar (CuentaBancaria cuentaImporte);
+	
 }

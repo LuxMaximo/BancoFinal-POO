@@ -27,18 +27,5 @@ public class CajaAhorro extends CuentaBancaria{
 		this.limite = limite;
 	}
 	
-	@Override
-	public Double depositar(Double importe) {
-		return this.saldo = this.saldo + importe;
-	}
-	
-	@Override
-	public Double extraer(Double importe) {
-		if(this.saldo >= importe) {
-			this.saldo = this.saldo - importe;
-		}
-		return this.saldo;
-	}
-	
 	
 }

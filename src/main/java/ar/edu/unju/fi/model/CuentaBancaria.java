@@ -87,16 +87,4 @@ public class CuentaBancaria {
 	}
 	
 	
-	public Double depositar(Double importe) {
-		return this.saldo = this.saldo + importe;
-	}
-	
-	public Double extraer(Double importe) {
-		if(this.saldo >= importe) {
-			this.saldo = this.saldo - importe;
-		}
-		return this.saldo;
-	}
-	
-	
 }

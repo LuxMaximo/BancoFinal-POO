@@ -66,12 +66,21 @@ public class CuentaBancariaTest {
 	@DisplayName("Prueba realizar deposito")
 	@Order(3)
 	void realizarDeposito() {
+		System.out.println("Comienza...");
+		
 		Integer numCuenta = 2;
-		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXnumeroCuenta(numCuenta);
+		System.out.println("Inicio la variable numCuenta: " + numCuenta);
+		
 		Double importeDeposito = 50d;
-		cuenta.depositar(importeDeposito);
-		System.out.println(cuenta);
-		clienteDAO.actualizar(cliente2);
-		assertEquals(2050d,cuenta.getSaldo()+importeDeposito);
+		System.out.println("Inicio la variable importe a depositar: " + importeDeposito);
+		
+		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXnumeroCuenta(numCuenta);
+		System.out.println("Saldo de la cuenta: " + cuenta.getSaldo());
+		
+		cuenta.setSaldo(cuenta.getSaldo() + importeDeposito);
+		cuentaBancariaDAO.depositar(cuenta);
+		assertEquals(2050d,cuenta.getSaldo());
 	}
+
+	
 }
