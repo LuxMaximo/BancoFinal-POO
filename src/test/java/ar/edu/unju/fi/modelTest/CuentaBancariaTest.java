@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -62,25 +63,52 @@ public class CuentaBancariaTest {
 		assertEquals(2, cuentas.size());
 	}
 	
+	
+	@Test
+	@DisplayName("Prueba realizar extraccion")
+	@Order(3)
+	void realizarExtraccion() {
+		Integer numeroCuenta = 1;
+		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXnumeroCuenta(numeroCuenta);
+		System.out.println("Saldo de la cuenta: " + cuenta.getSaldo());
+		float importeExtraccion = 500;
+		if(cuenta instanceof CajaAhorro) {
+			Double limite = ((CajaAhorro) cuenta).getLimite();
+			if(importeExtraccion <= limite) {
+				cuenta.setSaldo(cuenta.getSaldo() - importeExtraccion);
+				cuentaBancariaDAO.extraer(cuenta);
+				assertEquals(500,cuenta.getSaldo());
+			}			
+		}else {
+			if(cuenta instanceof CuentaCorriente) {
+				Double comision = ((CuentaCorriente) cuenta).getImporComision();
+				cuenta.setSaldo((cuenta.getSaldo() - importeExtraccion) + comision);
+				cuentaBancariaDAO.extraer(cuenta);
+				assertEquals(1000,cuenta.getSaldo());
+			}
+		}
+	}
+	
 	@Test
 	@DisplayName("Prueba realizar deposito")
-	@Order(3)
+	@Order(4)
 	void realizarDeposito() {
 		System.out.println("Comienza...");
 		
-		Integer numCuenta = 2;
-		System.out.println("Inicio la variable numCuenta: " + numCuenta);
-		
+		Integer numCuenta = 1;
 		Double importeDeposito = 50d;
-		System.out.println("Inicio la variable importe a depositar: " + importeDeposito);
-		
 		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXnumeroCuenta(numCuenta);
 		System.out.println("Saldo de la cuenta: " + cuenta.getSaldo());
-		
-		cuenta.setSaldo(cuenta.getSaldo() + importeDeposito);
-		cuentaBancariaDAO.depositar(cuenta);
-		assertEquals(2050d,cuenta.getSaldo());
+		if(cuenta instanceof CajaAhorro) {
+			cuenta.setSaldo(cuenta.getSaldo() + importeDeposito);
+			cuentaBancariaDAO.depositar(cuenta);
+			assertEquals(550d,cuenta.getSaldo());
+		}else {
+			if(cuenta instanceof CuentaCorriente) {
+				cuenta.setSaldo(cuenta.getSaldo() + importeDeposito);
+				cuentaBancariaDAO.depositar(cuenta);
+				assertEquals(2050d,cuenta.getSaldo());
+			}
+		}
 	}
-
-	
 }
