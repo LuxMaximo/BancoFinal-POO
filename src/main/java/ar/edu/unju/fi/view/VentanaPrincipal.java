@@ -1,15 +1,19 @@
 package ar.edu.unju.fi.view;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -37,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 647, 187);
+		setBounds(100, 100, 576, 213);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -103,6 +107,24 @@ public class VentanaPrincipal extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/banco.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img));
+		lblNewLabel.setBounds(85, 24, 96, 104);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Banco Departamental");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(221, 39, 232, 42);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("\"San Pedro de Jujuy\"");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		lblNewLabel_2.setBounds(251, 81, 183, 14);
+		contentPane.add(lblNewLabel_2);
+	
+		
 	}
 	
 	
