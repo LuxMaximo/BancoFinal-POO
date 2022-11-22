@@ -88,8 +88,8 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 				if (row != -1) {
 					Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
 					
-					AltaClienteFrame altaCliente = new AltaClienteFrame(idCliente);
-					altaCliente.setModal(true);
+					ActualizarClienteFrame altaCliente = new ActualizarClienteFrame(idCliente);
+					//altaCliente.setModal(true);
 					altaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					altaCliente.setVisible(true);
 					setTableModelFor(table);

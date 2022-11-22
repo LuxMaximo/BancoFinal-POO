@@ -35,7 +35,7 @@ public class ClientePresenter {
 	}
 
 	public void buscarByID(Integer id) {
-		Cliente cliente = (Cliente)clienteDAO.buscarXID(id);
+		Cliente cliente = clienteDAO.buscarXID(id);
 		formularioAltaCliente.setInputsText(cliente.getNombre(),  cliente.getEmail(), cliente.getDni(), cliente.getEstado());	
 	}
 	

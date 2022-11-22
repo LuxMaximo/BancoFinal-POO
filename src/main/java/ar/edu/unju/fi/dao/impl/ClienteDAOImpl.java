@@ -18,12 +18,7 @@ public class ClienteDAOImpl implements ClienteDAO{
 	public ClienteDAOImpl() {
 		super();
 	}
-/*
-	public ClienteDAOImpl(EntityManager manager, EntityManagerFactory factory) {
-		super();
-		this.manager = manager;
-		this.factory = factory;
-	}*/	
+
 	public ClienteDAOImpl(EntityManager manager) {
 		super();
 		this.manager = manager;

@@ -77,18 +77,11 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		
-		JMenu mnAltaCuentaBancaria = new JMenu("Crear nueva cuenta bancaria");
-		mnCuentaBancaria.add(mnAltaCuentaBancaria);
+		JMenuItem mntmAltaCuentaBancaria = new JMenuItem("Crear nueva cuenta bancaria");
+		mnCuentaBancaria.add(mntmAltaCuentaBancaria);
 		
-		
-		
-		JMenuItem mntmCuentaCorriente = new JMenuItem("Cuenta corriente");
-		mnAltaCuentaBancaria.add(mntmCuentaCorriente);
-		
-		
-		
-		JMenuItem mntmCajaAhorro = new JMenuItem("Caja de ahorro");
-		mnAltaCuentaBancaria.add(mntmCajaAhorro);
+		JMenuItem mntmListaCuentasBancarias = new JMenuItem("Ver lista de cuenta bancaria");
+		mnCuentaBancaria.add(mntmListaCuentasBancarias);
 		
 		
 		
@@ -109,7 +102,7 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/banco.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/img/banco.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(85, 24, 96, 104);
 		contentPane.add(lblNewLabel);
@@ -131,8 +124,8 @@ public class VentanaPrincipal extends JFrame {
 	
 	//-------------METODOS------------
 	public void altaCliente() {
-		AltaClienteFrame altaClienteFrame = new AltaClienteFrame(null);
-		altaClienteFrame.setModal(true);
+		AltaClienteFrame altaClienteFrame = new AltaClienteFrame();
+		
 		altaClienteFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		altaClienteFrame.setVisible(true);
 	}
