@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.modelTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -111,4 +113,17 @@ public class CuentaBancariaTest {
 			}
 		}
 	}
+	
+	@Test
+	@DisplayName("Prueba buscar por Tipo de Cuenta")
+	@Order(5)
+	void buscarCuentaTipo() {
+		String tipoCuenta = "CajaAhorro";
+//		Integer numCuenta = 1;
+//		CuentaBancaria cuentaCajaAhorro = cuentaBancariaDAO.buscarXnumeroCuenta(numCuenta);
+		CuentaBancaria cuenta = cuentaBancariaDAO.buscarXTipo(tipoCuenta);
+		assertNotNull(cuenta);
+	}
+	
+	
 }

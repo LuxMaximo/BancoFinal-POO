@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.modelTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -47,4 +48,19 @@ public class ClienteTest {
 		assertEquals(size, clientes.size());
 	}
 
+	@Test
+	@DisplayName("Prueba actualizar Cliente")
+	void actualizarCliente() {
+		cliente1.setEstado(false);
+		cliente1.setEmail("fj@gmail.com");
+		clienteDAO.actualizar(cliente1);
+	}
+	
+	@Test
+	@DisplayName("Prueba buscar Cliente")
+	void buscarClienteTest() {
+		String nombre = "Lucas";
+		List<Cliente> clientes = clienteDAO.buscarXNombre(nombre);		
+		assertTrue(clientes.size() > 0);		
+	}
 }

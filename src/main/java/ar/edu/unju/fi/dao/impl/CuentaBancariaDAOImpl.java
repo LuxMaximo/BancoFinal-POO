@@ -3,10 +3,12 @@ package ar.edu.unju.fi.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import ar.edu.unju.fi.dao.CuentaBancariaDAO;
 import ar.edu.unju.fi.model.CuentaBancaria;
+import ar.edu.unju.fi.model.Usuario;
 
 public class CuentaBancariaDAOImpl implements CuentaBancariaDAO{
 
@@ -49,5 +51,12 @@ public class CuentaBancariaDAOImpl implements CuentaBancariaDAO{
 		manager.getTransaction().begin();
         manager.merge(cuentaExtraccion);
         manager.getTransaction().commit();
+	}
+	
+	@Override
+	public CuentaBancaria buscarXTipo(String tipoCuenta) {
+		Query query = manager.createQuery("from CuentaBancaria c where c.DTYPE = :tipoCuenta");
+		query.setParameter("DTYPE", tipoCuenta);
+		return (CuentaBancaria) query.getSingleResult();	
 	}
 }
