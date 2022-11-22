@@ -62,32 +62,48 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		JLabel lblNombre = new JLabel("Tipo");
 		lblNombre.setBounds(10, 8, 70, 14);
 		contentPane.add(lblNombre);		
+		
+		
 		comboTipoCuenta = new JComboBox<String>();
 		comboTipoCuenta.setBounds(100, 8, 150, 20);
 		comboTipoCuenta.addItem("CAJA-AHORRO");
 		comboTipoCuenta.addItem("CUENTA-CORRIENTE");		
 		contentPane.add(comboTipoCuenta);
+		
+		
 		JLabel lblCliente = new JLabel("Cliente");
 		lblCliente.setBounds(10, 36, 98, 14);
 		contentPane.add(lblCliente);
+		
+		
 		comboClientes = new JComboBox<Cliente>();
 		comboClientes.setBounds(100,36, 150, 20);
 		cuentaBancariaPresenter.cargarComboTitulares();
 		contentPane.add(comboClientes);
+		
+		
 		JLabel lblNumeroCuenta = new JLabel("Numero");
 		lblNumeroCuenta.setBounds(10, 64, 98, 14);
-		contentPane.add(lblNumeroCuenta);		
+		contentPane.add(lblNumeroCuenta);	
+		
+		
 		txtNumeroCuenta = new JTextField();
 		txtNumeroCuenta.setBounds(100, 64, 104, 20);
 		contentPane.add(txtNumeroCuenta);
 		txtNumeroCuenta.setColumns(10);
+		
+		
 		JLabel lblSaldo = new JLabel("Saldo");
 		lblSaldo.setBounds(10, 88, 98, 14);
 		contentPane.add(lblSaldo);		
 		txtSaldo = new JTextField();
+		
+		
 		txtSaldo.setBounds(100, 88, 104, 20);
 		contentPane.add(txtSaldo);
 		txtSaldo.setColumns(10);
+		
+		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

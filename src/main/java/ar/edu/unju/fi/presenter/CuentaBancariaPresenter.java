@@ -45,10 +45,10 @@ public class CuentaBancariaPresenter {
 	public void registrarCuentaBancaria(String tipoCuenta, Object selectedItem, String numeroCuenta, String saldo) {
 		CuentaBancaria cuentaBancaria;
 		if (tipoCuenta.equals("CAJA-AHORRO")) {
-			cuentaBancaria  = new CajaAhorro(numeroCuenta, (Cliente) selectedItem, Double.parseDouble(saldo), null);
+			cuentaBancaria  = new CajaAhorro(Integer.parseInt(numeroCuenta), (Cliente) selectedItem, Double.parseDouble(saldo));
 			cuentaBancariaDAO.guardar(cuentaBancaria);
 		}else {
-			cuentaBancaria  = new CuentaCorriente(numeroCuenta, (Cliente) selectedItem, null, Double.parseDouble(saldo));
+			cuentaBancaria  = new CuentaCorriente(Integer.parseInt(numeroCuenta), Double.parseDouble(saldo),(Cliente) selectedItem);
 			cuentaBancariaDAO.guardar(cuentaBancaria);
 		}
 		
