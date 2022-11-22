@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -19,6 +20,8 @@ import ar.edu.unju.fi.model.Cliente;
 import ar.edu.unju.fi.model.CuentaBancaria;
 import ar.edu.unju.fi.presenter.CuentaBancariaPresenter;
 import ar.edu.unju.fi.presenter.views.IViewCuentaBancaria;
+import java.awt.Font;
+import java.awt.Image;
 
 public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBancaria {
 
@@ -29,6 +32,7 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 	private JComboBox<Cliente> comboClientes;
 	
 	private CuentaBancariaPresenter cuentaBancariaPresenter;
+	private JLabel lblNewLabel;
 	
 	/**
 	 * Launch the application.
@@ -55,7 +59,7 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		
 		setTitle("Alta Cuenta Bancaria");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(10, 100, 393, 183);
+		setBounds(10, 100, 393, 514);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -63,48 +67,70 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		contentPane.setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Tipo");
-		lblNombre.setBounds(10, 8, 70, 14);
+		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNombre.setBounds(109, 299, 32, 14);
 		contentPane.add(lblNombre);		
 		
 		
 		comboTipoCuenta = new JComboBox<String>();
-		comboTipoCuenta.setBounds(100, 8, 150, 20);
+		comboTipoCuenta.setBounds(151, 298, 150, 20);
 		comboTipoCuenta.addItem("CAJA-AHORRO");
 		comboTipoCuenta.addItem("CUENTA-CORRIENTE");		
 		contentPane.add(comboTipoCuenta);
 		
 		
 		JLabel lblCliente = new JLabel("Cliente");
-		lblCliente.setBounds(10, 36, 98, 14);
+		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblCliente.setBounds(91, 327, 53, 14);
 		contentPane.add(lblCliente);
 		
 		
 		comboClientes = new JComboBox<Cliente>();
-		comboClientes.setBounds(100,36, 150, 20);
+		comboClientes.setBounds(151,326, 150, 20);
 		cuentaBancariaPresenter.cargarComboTitulares();
 		contentPane.add(comboClientes);
 		
 		
+		JLabel lblNumeroCuenta = new JLabel("Numero");
+		lblNumeroCuenta.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNumeroCuenta.setBounds(82, 355, 59, 14);
+		contentPane.add(lblNumeroCuenta);	
+		
+		
+		txtNumeroCuenta = new JTextField();
+		txtNumeroCuenta.setBounds(151, 354, 104, 20);
+		contentPane.add(txtNumeroCuenta);
+		txtNumeroCuenta.setColumns(10);
+		
+		
 		JLabel lblSaldo = new JLabel("Saldo");
-		lblSaldo.setBounds(10, 70, 70, 14);
-		contentPane.add(lblSaldo);		
+		lblSaldo.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblSaldo.setBounds(99, 379, 42, 14);
+		contentPane.add(lblSaldo);	
+		
+		
 		txtSaldo = new JTextField();
-		
-		
-		txtSaldo.setBounds(100, 67, 104, 20);
+		txtSaldo.setBounds(151, 378, 104, 20);
 		contentPane.add(txtSaldo);
 		txtSaldo.setColumns(10);
 		
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 						registrarCuentaBancaria();
 			}
 		});
-		btnGuardar.setBounds(131, 106, 119, 23);
+		btnGuardar.setBounds(119, 422, 136, 42);
 		contentPane.add(btnGuardar);
+		
+		lblNewLabel = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/img/pig.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img));
+		lblNewLabel.setBounds(56, 30, 245, 258);
+		contentPane.add(lblNewLabel);
 	}
 
 	@Override
