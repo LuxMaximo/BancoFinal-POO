@@ -1,40 +1,36 @@
 package ar.edu.unju.fi.view;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import ar.edu.unju.fi.presenter.ClientePresenter;
 import ar.edu.unju.fi.presenter.views.IViewCliente;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.UIManager;
-
-@SuppressWarnings("serial")
-public class AltaClienteFrame extends JFrame implements IViewCliente{
+public class ActualizarClienteFrame extends JFrame implements IViewCliente{
 
 	private JPanel contentPane;
 	private JTextField textNombre;
 	private JTextField textDNI;
 	private JTextField textEmail;
-	//private JTextField textEstado;
+	private JTextField textEstado;
 	
 	private ClientePresenter clientePresenter;
 	private IViewCliente formularioAltaCliente;
 	
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -42,7 +38,7 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AltaClienteFrame frame = new AltaClienteFrame();
+					ActualizarClienteFrame frame = new ActualizarClienteFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,13 +50,12 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	/**
 	 * Create the frame.
 	 */
-	public AltaClienteFrame() {
-		
+	public ActualizarClienteFrame(Integer idCliente) {
 		clientePresenter = new ClientePresenter(this);
 		
-		setTitle("Alta Cliente");
+		setTitle("Actualizar Cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 364, 524);
+		setBounds(100, 100, 450, 572);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -103,22 +98,6 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		textEmail.setBounds(132, 370, 180, 20);
 		contentPane.add(textEmail);
 		
-
-
-		JButton btnGuardar =  new JButton("Guardar");
-		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 17));
-
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-					registrarNuevoCliente();	
-							
-
-			}
-		});
-		btnGuardar.setBounds(113, 425, 133, 47);
-		contentPane.add(btnGuardar);
-		/*
 		JLabel lblEstado = new JLabel("Estado*");
 		lblEstado.setForeground(UIManager.getColor("Table.foreground"));
 		lblEstado.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -129,7 +108,27 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		textEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textEstado.setBounds(132, 409, 180, 20);
 		contentPane.add(textEstado);
-		textEstado.setColumns(10);*/
+		textEstado.setColumns(10);
+		
+		buscarClienteBy(idCliente);
+
+		JButton btnGuardar =  new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 17));
+
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (idCliente != null) {
+					
+					actualizarCliente(idCliente);
+				}		
+
+			}
+		});
+		btnGuardar.setBounds(114, 464, 133, 47);
+		contentPane.add(btnGuardar);
+		
+
 		
 		JLabel lblNewLabel = new JLabel(""); 
 		Image img = new ImageIcon(this.getClass().getResource("/img/new.png")).getImage();
@@ -141,25 +140,41 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 	
 	//-------------METODOS------------
 	
-	private void registrarNuevoCliente() {
-		Long dni = Long.parseLong(textDNI.getText());
-		clientePresenter.registrarCliente(textNombre.getText(), textEmail.getText(), dni);
-		this.dispose();
-		}
-
+	private void buscarClienteBy(Integer idCliente) {
+		if(idCliente != null) {
+			clientePresenter.buscarByID(idCliente);	
+		}		
+	}
 	
-	@Override
-	public void visualizarResultado(String mensajeResultado) {
-			JOptionPane.showMessageDialog(this, mensajeResultado);
+	private void actualizarCliente(Integer idCliente) {
+		Long dni=0l;
+		boolean estado = true;
+		
+		if (textEstado.getText().length()== 5) {
+			estado = false;
+		}
+		clientePresenter.actualizarCliente(idCliente, textNombre.getText(), textEmail.getText(), dni.parseLong(textDNI.getText()), estado);
+		this.dispose();		
 	}
 
+	@Override
+	public void visualizarResultado(String mensajeResultado) {
+		JOptionPane.showMessageDialog(this, mensajeResultado);
+		
+	}
 
 	@Override
 	public void setInputsText(String nombre, String direccion, Long dni, boolean estado) {
 		String modo;
-		this.textNombre.setText(nombre);
-		this.textEmail.setText(direccion);
 		this.textDNI.setText(dni.toString());
+		this.textEmail.setText(direccion);
+		this.textNombre.setText(nombre);
+		if (estado) {
+			modo = "Habilitado";
+		}else
+			modo = "Deshabilitado";
+		this.textEstado.setText(modo);
 		
 	}
+
 }

@@ -39,10 +39,7 @@ public class LoginFrame extends JFrame implements IViewlogin{
 				try {
 					JFrame.setDefaultLookAndFeelDecorated(true);
 					JDialog.setDefaultLookAndFeelDecorated(true);
-					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
 					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 					LoginFrame frame = new LoginFrame();
 					frame.setVisible(true);
 					
@@ -101,9 +98,12 @@ public class LoginFrame extends JFrame implements IViewlogin{
 		});
 		btnIngresar.setBounds(288, 166, 104, 31);
 		contentPane.add(btnIngresar);
+		//".img/src/main/java/ar/edu/unju/fi/view/secrecy-icon.png"
+		//./img/../../../../../../../../secrecy-icon.png
+		
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/secrecy-icon.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/img/secrecy-icon.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
 		lblNewLabel.setBounds(35, 21, 138, 176);
 		contentPane.add(lblNewLabel);
