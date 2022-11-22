@@ -16,4 +16,7 @@ public interface CuentaBancariaDAO {
 	void depositar (CuentaBancaria cuentaImporte);
 	
 	void extraer(CuentaBancaria cuentaExtraccion);
+	
+	CuentaBancaria buscarXTipo(String tipoCuenta);
+	
 }
