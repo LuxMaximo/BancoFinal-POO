@@ -12,6 +12,7 @@ import ar.edu.unju.fi.presenter.views.IViewlogin;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,6 +22,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 
 public class LoginFrame extends JFrame implements IViewlogin{
 
@@ -35,8 +37,15 @@ public class LoginFrame extends JFrame implements IViewlogin{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					JFrame.setDefaultLookAndFeelDecorated(true);
+					JDialog.setDefaultLookAndFeelDecorated(true);
+					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+					UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					//UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 					LoginFrame frame = new LoginFrame();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -86,7 +95,7 @@ public class LoginFrame extends JFrame implements IViewlogin{
 		btnIngresar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//login();
+				
 				loginPresenter.validar(txtUsuario.getText(), txtPassword.getText());
 			}
 		});
