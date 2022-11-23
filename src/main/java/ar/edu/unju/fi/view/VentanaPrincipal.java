@@ -46,13 +46,13 @@ public class VentanaPrincipal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnEntidades = new JMenu("Entidades");
+		JMenu mnEntidades = new JMenu("Menú");
 		menuBar.add(mnEntidades);
 		
 		JMenu mnCliente = new JMenu("Clientes");
 		mnEntidades.add(mnCliente);
 		
-		JMenuItem mntmAltaCliente = new JMenuItem("Crear nuevo cliente");
+		JMenuItem mntmAltaCliente = new JMenuItem("+ Nuevo Cliente");
 		mntmAltaCliente.addActionListener(new ActionListener() {
 			
 			@Override
@@ -63,7 +63,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		mnCliente.add(mntmAltaCliente);
 		
-		JMenuItem mntmListarClientes = new JMenuItem("Ver la lista de clientes");
+		JMenuItem mntmListarClientes = new JMenuItem("Listar Clientes");
 		mntmListarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mostrarLista();
@@ -72,15 +72,29 @@ public class VentanaPrincipal extends JFrame {
 		mnCliente.add(mntmListarClientes);
 		
 		
-		JMenu mnCuentaBancaria = new JMenu("Cuentas bancarias");
+		JMenu mnCuentaBancaria = new JMenu("Cuentas Bancarias");
 		mnEntidades.add(mnCuentaBancaria);
 		
 		
 		
-		JMenuItem mntmAltaCuentaBancaria = new JMenuItem("Crear nueva cuenta bancaria");
+		JMenuItem mntmAltaCuentaBancaria = new JMenuItem("+ Nueva Cuenta Bancaria");
+		mntmAltaCuentaBancaria.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				altaCuenta();		
+			}
+		});
 		mnCuentaBancaria.add(mntmAltaCuentaBancaria);
 		
-		JMenuItem mntmListaCuentasBancarias = new JMenuItem("Ver lista de cuenta bancaria");
+		JMenuItem mntmListaCuentasBancarias = new JMenuItem("listar Cuenta bancaria");
+		mntmListaCuentasBancarias.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mostrarCuentas();		
+			}
+		});
 		mnCuentaBancaria.add(mntmListaCuentasBancarias);
 		
 		
@@ -134,5 +148,17 @@ public class VentanaPrincipal extends JFrame {
 		ListadoClientesFrame ls = new ListadoClientesFrame();
 		ls.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		ls.setVisible(true);
+	}
+	
+	public void altaCuenta() {
+		AltaCuentaBancariaFrame altaCuentaBancariaFrame = new AltaCuentaBancariaFrame(null);
+		altaCuentaBancariaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		altaCuentaBancariaFrame.setVisible(true);
+	}
+	
+	public void mostrarCuentas() {
+		ListadoCuentasFrame listadoCuentasFrame = new ListadoCuentasFrame();
+		listadoCuentasFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		listadoCuentasFrame.setVisible(true);
 	}
 }
