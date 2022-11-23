@@ -131,5 +131,11 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		this.dispose();
 	}
 
+	@Override
+	public void setInputsText(String nombre, Double saldo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
