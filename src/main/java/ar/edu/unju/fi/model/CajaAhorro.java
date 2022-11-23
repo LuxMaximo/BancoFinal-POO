@@ -16,6 +16,11 @@ public class CajaAhorro extends CuentaBancaria{
 		super( saldo, cliente, num);
 		this.limite = 2000d;
 	}
+	
+	public CajaAhorro(Cliente cliente, Double saldo) {
+		super( saldo, cliente);
+		this.limite = 2000d;
+	}
 
 	//---------Getters & Setters------
 	@Column(name = "limite_extraccion")
