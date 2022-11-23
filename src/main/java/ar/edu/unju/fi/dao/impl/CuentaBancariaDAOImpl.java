@@ -47,7 +47,6 @@ public class CuentaBancariaDAOImpl implements CuentaBancariaDAO{
 	
 	@Override
 	public void extraer(CuentaBancaria cuentaExtraccion) {
-		// TODO Auto-generated method stub
 		manager.getTransaction().begin();
         manager.merge(cuentaExtraccion);
         manager.getTransaction().commit();

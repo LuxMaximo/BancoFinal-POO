@@ -18,6 +18,9 @@ public class ListadoCuentasPresenter {
 	private IViewCuentas ventanaCuentas;
 	private CuentaBancariaDAO cuentaDAO;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public ListadoCuentasPresenter(ListadoCuentasFrame listadoCuentasFrame) {
 		this.ventanaCuentas =	listadoCuentasFrame;
 	}
@@ -78,4 +81,6 @@ public class ListadoCuentasPresenter {
 			model.addRow(data);
 		}
 	}
+	
+
 }

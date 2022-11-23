@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -64,20 +65,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnAgregar = new JButton("Agregar Cuenta");
-		btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AltaCuentaBancariaFrame altaCuentaFrame = new AltaCuentaBancariaFrame(null);
-				altaCuentaFrame.setModal(true);
-				altaCuentaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				altaCuentaFrame.setVisible(true);
-				setTableModelFor(table);
-				visualizarListadoCuentas();
-			}
-		});
-		btnAgregar.setBounds(764, 256, 126, 40);
-		contentPane.add(btnAgregar);
+		presenter = new ListadoCuentasPresenter(this);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 48, 740, 350);
@@ -93,34 +81,80 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		lblNewLabel.setBounds(775, 11, 96, 85);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("DEPOSITAR");
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		txtBuscarTipoCuenta = new JTextField();
+		txtBuscarTipoCuenta.setBounds(10, 10, 156, 27);
+		contentPane.add(txtBuscarTipoCuenta);
+		txtBuscarTipoCuenta.setColumns(10);
+		
+		txtBuscarNumCuenta = new JTextField();
+		txtBuscarNumCuenta.setBounds(394, 11, 156, 26);
+		contentPane.add(txtBuscarNumCuenta);
+		txtBuscarNumCuenta.setColumns(10);
+		
+		
+		JButton btnAgregar = new JButton("Agregar Cuenta");
+		btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DepositoFrame frame = new DepositoFrame();
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);
+				AltaCuentaBancariaFrame altaCuentaFrame = new AltaCuentaBancariaFrame(null);
+				altaCuentaFrame.setModal(true);
+				altaCuentaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				altaCuentaFrame.setVisible(true);
 				setTableModelFor(table);
 				visualizarListadoCuentas();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(764, 180, 126, 40);
-		contentPane.add(btnNewButton);
+		btnAgregar.setBounds(764, 256, 126, 40);
+		contentPane.add(btnAgregar);
 		
-		JButton btnNewButton_1 = new JButton("EXTRAER");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		
+		JButton btnDepositar = new JButton("DEPOSITAR");
+		btnDepositar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ExtraccionFrame frame = new ExtraccionFrame();
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);
-				setTableModelFor(table);
-				visualizarListadoCuentas();
+				int row = table.getSelectedRow();
+				if (row != -1) {
+					Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
+					
+					DepositoFrame frame = new DepositoFrame();
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setVisible(true);
+					
+					setTableModelFor(table);
+					visualizarListadoCuentas();
+				}
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(764, 129, 126, 40);
-		contentPane.add(btnNewButton_1);
+		btnDepositar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnDepositar.setBounds(764, 180, 126, 40);
+		contentPane.add(btnDepositar);
 		
+		
+		JButton btnExtraer = new JButton("EXTRAER");
+		btnExtraer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				if (row != -1) {
+					Integer idCuentaBancaria = (Integer) table.getModel().getValueAt(row, 0);
+					
+					ExtraccionFrame frame = new ExtraccionFrame(idCuentaBancaria);
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setModal(true);
+					frame.setVisible(true);
+				
+					setTableModelFor(table);
+					visualizarListadoCuentas();
+				}else {
+					JOptionPane.showMessageDialog(null, "No selecciono ninguna cuenta.");
+				}
+			}
+		});
+		btnExtraer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnExtraer.setBounds(764, 129, 126, 40);
+		contentPane.add(btnExtraer);
+		
+		
+		//Buscar el numero de Cuenta
 		JButton btnBuscar = new JButton("Buscar Numero de Cuenta");
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,15 +163,9 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		});
 		btnBuscar.setBounds(560, 11, 190, 26);
 		contentPane.add(btnBuscar);
-		
-		txtBuscarNumCuenta = new JTextField();
-		txtBuscarNumCuenta.setBounds(394, 11, 156, 26);
-		contentPane.add(txtBuscarNumCuenta);
-		txtBuscarNumCuenta.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/img/banco.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
+		
 		
 		JButton btnBuscarTipo = new JButton("Buscar Tipo de Cuenta");
 		btnBuscarTipo.addActionListener(new ActionListener() {
@@ -148,15 +176,13 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		btnBuscarTipo.setBounds(176, 9, 168, 28);
 		contentPane.add(btnBuscarTipo);
 		
-		txtBuscarTipoCuenta = new JTextField();
-		txtBuscarTipoCuenta.setBounds(10, 10, 156, 27);
-		contentPane.add(txtBuscarTipoCuenta);
-		txtBuscarTipoCuenta.setColumns(10);
-		lblNewLabel_1.setBounds(704, 236, 46, 14);
-		contentPane.add(lblNewLabel_1);
-		presenter = new ListadoCuentasPresenter(this);
+
+		
+		
 	    visualizarListadoCuentas();
 	}
+	
+	
 	
 	private void setTableModelFor(JTable table) {
 		table.setModel(new DefaultTableModel(
@@ -180,7 +206,6 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 
 	@Override
 	public void visualizarListadoCuentas() {
-		// TODO Auto-generated method stub
 		presenter.visualizarCuentas();
 	}
 

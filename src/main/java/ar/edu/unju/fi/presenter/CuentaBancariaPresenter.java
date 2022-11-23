@@ -19,8 +19,11 @@ import ar.edu.unju.fi.util.ManagerContext;
 public class CuentaBancariaPresenter {
 	private IViewCuentaBancaria formularioAltaCuenta;
 	private CuentaBancariaDAO cuentaBancariaDAO;
-	private CuentaBancaria cuentaBancaria;
+	private CuentaBancaria cuentaBancariaModel;
+	private CajaAhorro cajaAhorroModel;
+	private CuentaCorriente cuentaCorrienteModel;
 	private ClienteDAO clienteDAO;
+	private Cliente clienteModel;
 	
 	int numero = (int) (Math.random() * 1000 + 1);
 	
@@ -81,5 +84,40 @@ public class CuentaBancariaPresenter {
 				cuentaBancariaDAO.guardar(cuentaBancaria);
 			}
 		}
+	}
+	
+	//Extraccion por caja de ahorro
+	public void extraerXCajaAhorro(Integer idCuentaBancaria, Double monto) {
+		List<CuentaBancaria> cuentas = obtenerCuentas();
+		//Obtengo al cliente y la cuenta
+		for (CuentaBancaria cuentaBancaria : cuentas) {
+			if ( cuentaBancaria.getId() == idCuentaBancaria) {
+				clienteModel = cuentaBancaria.getCliente();
+				cajaAhorroModel = (CajaAhorro) cuentaBancaria;
+			}
+		}
+		//cajaAhorroModel = new CajaAhorro(clienteModel, monto);
+		
+		//cajaAhorroModel.setId(idCuentaBancaria);
+		//cajaAhorroModel.setNumCuenta(cajaAhorroModel.getNumCuenta());
+		Double limit = 0d;
+		limit = cajaAhorroModel.getLimite() - limit;
+		
+		if(monto <= limit) {
+			limit = limit - monto;
+			monto = cajaAhorroModel.getSaldo() - monto;
+			cajaAhorroModel.setSaldo(monto);
+		}
+		
+		
+		
+		cuentaBancariaDAO.extraer(cajaAhorroModel);
+	}
+	
+	
+	
+	public List<CuentaBancaria> obtenerCuentas() {
+		List<CuentaBancaria> cuentas = cuentaBancariaDAO.obtenerLista();
+		return cuentas;
 	}
 }

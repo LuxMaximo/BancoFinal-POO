@@ -160,6 +160,5 @@ public class AltaClienteFrame extends JFrame implements IViewCliente{
 		this.textNombre.setText(nombre);
 		this.textEmail.setText(direccion);
 		this.textDNI.setText(dni.toString());
-		
 	}
 }

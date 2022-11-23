@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class CuentaBancaria {
-	private Long id;
+	private Integer id;
 	private Integer numCuenta;
 	private Date fechaCreacion;
 	protected Double saldo;
@@ -63,10 +63,10 @@ public class CuentaBancaria {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", updatable = false, nullable= false)
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
