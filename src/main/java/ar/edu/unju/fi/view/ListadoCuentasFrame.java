@@ -65,6 +65,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		contentPane.setLayout(null);
 		
 		JButton btnAgregar = new JButton("Agregar Cuenta");
+		btnAgregar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AltaCuentaBancariaFrame altaCuentaFrame = new AltaCuentaBancariaFrame(null);
@@ -75,7 +76,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				visualizarListadoCuentas();
 			}
 		});
-		btnAgregar.setBounds(10, 3, 118, 34);
+		btnAgregar.setBounds(693, 256, 126, 40);
 		contentPane.add(btnAgregar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -89,29 +90,35 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(708, 105, 96, 85);
+		lblNewLabel.setBounds(704, 11, 96, 85);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("DEPOSITAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DepositoFrame frame = new DepositoFrame();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);
+				setTableModelFor(table);
+				visualizarListadoCuentas();
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(693, 252, 126, 40);
+		btnNewButton.setBounds(693, 180, 126, 40);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("EXTRAER");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ExtraccionFrame frame = new ExtraccionFrame();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);
+				setTableModelFor(table);
+				visualizarListadoCuentas();
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(693, 201, 126, 40);
+		btnNewButton_1.setBounds(693, 129, 126, 40);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnBuscar = new JButton("Buscar Numero de Cuenta");
@@ -120,11 +127,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				buscarXNumeroCuenta();
 			}
 		});
-		btnBuscar.setBounds(533, 3, 150, 34);
+		btnBuscar.setBounds(506, 11, 157, 26);
 		contentPane.add(btnBuscar);
 		
 		txtBuscarNumCuenta = new JTextField();
-		txtBuscarNumCuenta.setBounds(454, 3, 73, 34);
+		txtBuscarNumCuenta.setBounds(352, 11, 144, 26);
 		contentPane.add(txtBuscarNumCuenta);
 		txtBuscarNumCuenta.setColumns(10);
 		
@@ -138,11 +145,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				buscarXTipoCuenta();
 			}
 		});
-		btnBuscarTipo.setBounds(291, 6, 96, 28);
+		btnBuscarTipo.setBounds(176, 9, 144, 28);
 		contentPane.add(btnBuscarTipo);
 		
 		txtBuscarTipoCuenta = new JTextField();
-		txtBuscarTipoCuenta.setBounds(172, 10, 109, 20);
+		txtBuscarTipoCuenta.setBounds(10, 10, 156, 27);
 		contentPane.add(txtBuscarTipoCuenta);
 		txtBuscarTipoCuenta.setColumns(10);
 		lblNewLabel_1.setBounds(704, 236, 46, 14);
