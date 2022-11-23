@@ -31,12 +31,11 @@ public class CuentaBancaria {
 		this.numCuenta = num;
 	}
 	
-	int numero = (int) (Math.random() * 1000 + 1);
+	
 	public CuentaBancaria(Double saldo, Cliente cliente) {
 		this.fechaCreacion = new Date();
 		this.saldo = saldo;
 		this.cliente = cliente;
-		this.numCuenta = numero;
 	}
 
 
