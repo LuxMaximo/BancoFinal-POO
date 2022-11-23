@@ -91,26 +91,14 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		contentPane.add(comboClientes);
 		
 		
-		JLabel lblNumeroCuenta = new JLabel("Numero");
-		lblNumeroCuenta.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNumeroCuenta.setBounds(82, 355, 59, 14);
-		contentPane.add(lblNumeroCuenta);	
-		
-		
-		txtNumeroCuenta = new JTextField();
-		txtNumeroCuenta.setBounds(151, 354, 104, 20);
-		contentPane.add(txtNumeroCuenta);
-		txtNumeroCuenta.setColumns(10);
-		
-		
 		JLabel lblSaldo = new JLabel("Saldo");
 		lblSaldo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSaldo.setBounds(99, 379, 42, 14);
+		lblSaldo.setBounds(99, 358, 42, 14);
 		contentPane.add(lblSaldo);	
 		
 		
 		txtSaldo = new JTextField();
-		txtSaldo.setBounds(151, 378, 104, 20);
+		txtSaldo.setBounds(151, 357, 104, 20);
 		contentPane.add(txtSaldo);
 		txtSaldo.setColumns(10);
 		
