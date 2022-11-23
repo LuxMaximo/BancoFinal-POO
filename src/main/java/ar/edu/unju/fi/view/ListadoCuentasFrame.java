@@ -58,7 +58,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 	public ListadoCuentasFrame() {
 		setTitle("Listado de Cuentas Bancarias");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 846, 459);
+		setBounds(100, 100, 916, 459);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -76,11 +76,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				visualizarListadoCuentas();
 			}
 		});
-		btnAgregar.setBounds(693, 256, 126, 40);
+		btnAgregar.setBounds(764, 256, 126, 40);
 		contentPane.add(btnAgregar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 48, 673, 350);
+		scrollPane.setBounds(10, 48, 740, 350);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -90,7 +90,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(704, 11, 96, 85);
+		lblNewLabel.setBounds(775, 11, 96, 85);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("DEPOSITAR");
@@ -104,7 +104,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(693, 180, 126, 40);
+		btnNewButton.setBounds(764, 180, 126, 40);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("EXTRAER");
@@ -118,7 +118,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 			}
 		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(693, 129, 126, 40);
+		btnNewButton_1.setBounds(764, 129, 126, 40);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnBuscar = new JButton("Buscar Numero de Cuenta");
@@ -127,11 +127,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				buscarXNumeroCuenta();
 			}
 		});
-		btnBuscar.setBounds(506, 11, 157, 26);
+		btnBuscar.setBounds(560, 11, 190, 26);
 		contentPane.add(btnBuscar);
 		
 		txtBuscarNumCuenta = new JTextField();
-		txtBuscarNumCuenta.setBounds(352, 11, 144, 26);
+		txtBuscarNumCuenta.setBounds(394, 11, 156, 26);
 		contentPane.add(txtBuscarNumCuenta);
 		txtBuscarNumCuenta.setColumns(10);
 		
@@ -145,7 +145,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				buscarXTipoCuenta();
 			}
 		});
-		btnBuscarTipo.setBounds(176, 9, 144, 28);
+		btnBuscarTipo.setBounds(176, 9, 168, 28);
 		contentPane.add(btnBuscarTipo);
 		
 		txtBuscarTipoCuenta = new JTextField();

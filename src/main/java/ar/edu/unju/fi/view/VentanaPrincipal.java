@@ -42,7 +42,7 @@ public class VentanaPrincipal extends JFrame {
 	 */
 	public VentanaPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 576, 213);
+		setBounds(100, 100, 576, 244);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -90,7 +90,7 @@ public class VentanaPrincipal extends JFrame {
 		});
 		mnCuentaBancaria.add(mntmAltaCuentaBancaria);
 		
-		JMenuItem mntmListaCuentasBancarias = new JMenuItem("listar Cuenta bancaria");
+		JMenuItem mntmListaCuentasBancarias = new JMenuItem("Listar Cuentas Bancarias");
 		mntmListaCuentasBancarias.addActionListener(new ActionListener() {
 			
 			@Override
@@ -120,19 +120,19 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/img/banco.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/img/banck.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(85, 24, 96, 104);
+		lblNewLabel.setBounds(83, 29, 150, 128);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Banco Departamental");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(221, 39, 232, 42);
+		lblNewLabel_1.setBounds(254, 57, 232, 42);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("\"San Pedro de Jujuy\"");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 16));
-		lblNewLabel_2.setBounds(251, 81, 183, 14);
+		lblNewLabel_2.setBounds(284, 99, 183, 14);
 		contentPane.add(lblNewLabel_2);
 	
 		

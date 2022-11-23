@@ -38,7 +38,7 @@ public class DepositoFrame extends JFrame {
 	 */
 	public DepositoFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 351, 537);
+		setBounds(100, 100, 351, 401);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -46,23 +46,23 @@ public class DepositoFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/img/safe.png")).getImage();
+		Image img = new ImageIcon(this.getClass().getResource("/img/safe2.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
-		lblNewLabel.setBounds(42, 24, 270, 266);
+		lblNewLabel.setBounds(96, 42, 132, 134);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Depositar");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton.setBounds(107, 416, 132, 54);
+		btnNewButton.setBounds(109, 275, 132, 54);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Monto $");
+		JLabel lblNewLabel_1 = new JLabel("Importe $");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(53, 346, 79, 38);
+		lblNewLabel_1.setBounds(47, 205, 99, 38);
 		contentPane.add(lblNewLabel_1);
 		
 		textField = new JTextField();
-		textField.setBounds(141, 352, 132, 32);
+		textField.setBounds(156, 211, 132, 32);
 		contentPane.add(textField);
 		textField.setColumns(10);
 	}
