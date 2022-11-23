@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame {
@@ -53,6 +54,7 @@ public class VentanaPrincipal extends JFrame {
 		mnEntidades.add(mnCliente);
 		
 		JMenuItem mntmAltaCliente = new JMenuItem("+ Nuevo Cliente");
+		mntmAltaCliente.setForeground(new Color(0, 100, 0));
 		mntmAltaCliente.addActionListener(new ActionListener() {
 			
 			@Override
@@ -78,6 +80,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		JMenuItem mntmAltaCuentaBancaria = new JMenuItem("+ Nueva Cuenta Bancaria");
+		mntmAltaCuentaBancaria.setForeground(new Color(0, 100, 0));
 		mntmAltaCuentaBancaria.addActionListener(new ActionListener() {
 			
 			@Override
@@ -100,6 +103,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		JMenuItem mntmCerrar = new JMenuItem("Salir del programa");
+		mntmCerrar.setForeground(new Color(220, 20, 60));
 		mntmCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(1);
