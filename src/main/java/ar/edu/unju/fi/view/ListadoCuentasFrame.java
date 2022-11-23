@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,12 +18,17 @@ import javax.swing.table.DefaultTableModel;
 import ar.edu.unju.fi.presenter.ListadoCuentasPresenter;
 import ar.edu.unju.fi.presenter.views.IViewCuentas;
 import ar.edu.unju.fi.view.ListadoCuentasFrame;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.JTextField;
 
 public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 
 	private JPanel contentPane;
 	private ListadoCuentasPresenter presenter;
 	private JTable table;
+	private JTextField textField;
 
 	public JTable getTable() {
 		return table;
@@ -51,15 +57,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 	public ListadoCuentasFrame() {
 		setTitle("Listado de Cuentas Bancarias");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 737, 459);
+		setBounds(100, 100, 846, 459);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblTitulo = new JLabel("Listado de Cuentas Bancarias");
-		lblTitulo.setBounds(10, 11, 212, 14);
-		contentPane.add(lblTitulo);
 		
 		JButton btnAgregar = new JButton("Agregar Cuenta");
 		btnAgregar.addActionListener(new ActionListener() {
@@ -72,7 +74,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 				visualizarListadoCuentas();
 			}
 		});
-		btnAgregar.setBounds(332, 11, 180, 23);
+		btnAgregar.setBounds(10, 3, 118, 34);
 		contentPane.add(btnAgregar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -83,6 +85,40 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		table.setRowSelectionAllowed(true);
 		setTableModelFor(table);
 		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel.setBounds(708, 105, 96, 85);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("DEPOSITAR");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(693, 252, 126, 40);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("EXTRAER");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(693, 201, 126, 40);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Buscar");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(594, 3, 89, 34);
+		contentPane.add(btnNewButton_2);
+		
+		textField = new JTextField();
+		textField.setBounds(402, 3, 182, 34);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/img/banco.png")).getImage();
+		lblNewLabel.setIcon(new ImageIcon(img));
+		lblNewLabel_1.setBounds(704, 236, 46, 14);
+		contentPane.add(lblNewLabel_1);
 		presenter = new ListadoCuentasPresenter(this);
 	    visualizarListadoCuentas();
 	}
