@@ -21,7 +21,8 @@ public class CuentaBancariaPresenter {
 	private CuentaBancariaDAO cuentaBancariaDAO;
 	private CuentaBancaria cuentaBancaria;
 	private ClienteDAO clienteDAO;
-	public Integer count=100;
+	
+	int numero = (int) (Math.random() * 1000 + 1);
 	
 	public CuentaBancariaPresenter(IViewCuentaBancaria formularioAltaCuenta) {
 		this.formularioAltaCuenta = formularioAltaCuenta;
@@ -48,6 +49,7 @@ public class CuentaBancariaPresenter {
 		Boolean bandera=false;
 		List <CuentaBancaria> ls = cuentaBancariaDAO.obtenerLista();
 		
+		
 		//verifico si el cliente ya tiene una cuenta bancaria
 		for (CuentaBancaria listacuentas : ls) {
 			if (listacuentas.getCliente().getId() == cliente.getId()) {
@@ -57,20 +59,27 @@ public class CuentaBancariaPresenter {
 		}
 		
 		
-		//Verifica que tipo de cuenta eligio
-		if (tipoCuenta.equals("CAJA-AHORRO")) {
-			cuentaBancaria  = new CajaAhorro( (Cliente) selectedItem, Double.parseDouble(saldo), count);
-			if(!bandera) {
-				count = count + 1;
-				cuentaBancariaDAO.guardar(cuentaBancaria);
-			}
-		}else {
-			cuentaBancaria  = new CuentaCorriente( Double.parseDouble(saldo),(Cliente) selectedItem, count);
-			if(!bandera) {
-				count = count + 1;
-				cuentaBancariaDAO.guardar(cuentaBancaria);
+		//verifica que no se vuelva a repetir el numero para la cuenta
+		for (CuentaBancaria numCuentaRep : ls) {
+			if(numCuentaRep.getNumCuenta() == numero) {
+				numero = (int) (Math.random() * 1000 + 1);
 			}
 		}
 		
+		
+		//Verifica que tipo de cuenta eligio
+		if (tipoCuenta.equals("CAJA-AHORRO")) {
+			cuentaBancaria  = new CajaAhorro( (Cliente) selectedItem, Double.parseDouble(saldo), numero);
+			if(!bandera) {
+
+				cuentaBancariaDAO.guardar(cuentaBancaria);
+			}
+		}else {
+			cuentaBancaria  = new CuentaCorriente( Double.parseDouble(saldo),(Cliente) selectedItem, numero);
+			if(!bandera) {
+				
+				cuentaBancariaDAO.guardar(cuentaBancaria);
+			}
+		}
 	}
 }

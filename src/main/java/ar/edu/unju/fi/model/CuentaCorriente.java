@@ -15,6 +15,11 @@ public class CuentaCorriente extends CuentaBancaria{
 		super(saldo, cliente, num);
 		this.imporComision = 500d;
 	}
+	
+	public CuentaCorriente(Double saldo, Cliente cliente) {
+		super(saldo, cliente);
+		this.imporComision = 500d;
+	}
 
 
 	//---------Getters & Setters------
