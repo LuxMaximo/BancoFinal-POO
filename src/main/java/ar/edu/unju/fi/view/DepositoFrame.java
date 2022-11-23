@@ -53,7 +53,7 @@ public class DepositoFrame extends JFrame {
 		
 		JButton btnNewButton = new JButton("Depositar");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnNewButton.setBounds(107, 416, 111, 54);
+		btnNewButton.setBounds(107, 416, 132, 54);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Monto $");

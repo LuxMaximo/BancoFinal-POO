@@ -92,11 +92,23 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("DEPOSITAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DepositoFrame frame = new DepositoFrame();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(693, 252, 126, 40);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("EXTRAER");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ExtraccionFrame frame = new ExtraccionFrame();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(693, 201, 126, 40);
 		contentPane.add(btnNewButton_1);
