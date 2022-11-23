@@ -18,10 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-public class ListadoClientesFrame extends JFrame implements IViewClientes{
+public class ListadoClientesFrame extends JDialog implements IViewClientes{
 
 	private JPanel contentPane;
 	private ListadoClientesPresenter presenter;
@@ -89,7 +90,7 @@ public class ListadoClientesFrame extends JFrame implements IViewClientes{
 					Integer idCliente = (Integer) table.getModel().getValueAt(row, 0);
 					
 					ActualizarClienteFrame altaCliente = new ActualizarClienteFrame(idCliente);
-					//altaCliente.setModal(true);
+					altaCliente.setModal(true);
 					altaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					altaCliente.setVisible(true);
 					setTableModelFor(table);

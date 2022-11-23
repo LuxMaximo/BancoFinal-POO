@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import ar.edu.unju.fi.presenter.ListadoCuentasPresenter;
 import ar.edu.unju.fi.presenter.views.IViewCuentas;
 import ar.edu.unju.fi.view.ListadoCuentasFrame;
 
-public class ListadoCuentasFrame extends JFrame implements IViewCuentas{
+public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 
 	private JPanel contentPane;
 	private ListadoCuentasPresenter presenter;
@@ -49,7 +50,7 @@ public class ListadoCuentasFrame extends JFrame implements IViewCuentas{
 	 */
 	public ListadoCuentasFrame() {
 		setTitle("Listado de Cuentas Bancarias");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 737, 459);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,7 +58,7 @@ public class ListadoCuentasFrame extends JFrame implements IViewCuentas{
 		contentPane.setLayout(null);
 		
 		JLabel lblTitulo = new JLabel("Listado de Cuentas Bancarias");
-		lblTitulo.setBounds(10, 11, 153, 14);
+		lblTitulo.setBounds(10, 11, 212, 14);
 		contentPane.add(lblTitulo);
 		
 		JButton btnAgregar = new JButton("Agregar Cuenta");
@@ -71,7 +72,7 @@ public class ListadoCuentasFrame extends JFrame implements IViewCuentas{
 				visualizarListadoCuentas();
 			}
 		});
-		btnAgregar.setBounds(200, 11, 180, 23);
+		btnAgregar.setBounds(332, 11, 180, 23);
 		contentPane.add(btnAgregar);
 		
 		JScrollPane scrollPane = new JScrollPane();
