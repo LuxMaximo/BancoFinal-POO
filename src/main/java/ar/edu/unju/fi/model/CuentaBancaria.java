@@ -23,11 +23,12 @@ public class CuentaBancaria {
 	
 	 public CuentaBancaria() {}
 	
-	public CuentaBancaria(Double saldo, Cliente cliente) {
+	public CuentaBancaria(Double saldo, Cliente cliente, Integer num) {
 		super();
 		this.fechaCreacion = new Date();
 		this.saldo = saldo;
 		this.cliente = cliente;
+		this.numCuenta = num;
 	}
 
 

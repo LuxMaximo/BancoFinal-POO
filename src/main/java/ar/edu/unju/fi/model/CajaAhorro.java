@@ -12,8 +12,8 @@ public class CajaAhorro extends CuentaBancaria{
 	public CajaAhorro() {}
 	
 	//Constructor con atributos
-	public CajaAhorro(Cliente cliente, Double saldo) {
-		super( saldo, cliente);
+	public CajaAhorro(Cliente cliente, Double saldo, Integer num) {
+		super( saldo, cliente, num);
 		this.limite = 2000d;
 	}
 

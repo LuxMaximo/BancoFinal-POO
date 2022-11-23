@@ -20,7 +20,8 @@ public class CuentaBancariaPresenter {
 	private IViewCuentaBancaria formularioAltaCuenta;
 	private CuentaBancariaDAO cuentaBancariaDAO;
 	private CuentaBancaria cuentaBancaria;
-	private ClienteDAO clienteDAO;;
+	private ClienteDAO clienteDAO;
+	public Integer count=100;
 	
 	public CuentaBancariaPresenter(IViewCuentaBancaria formularioAltaCuenta) {
 		this.formularioAltaCuenta = formularioAltaCuenta;
@@ -58,13 +59,15 @@ public class CuentaBancariaPresenter {
 		
 		//Verifica que tipo de cuenta eligio
 		if (tipoCuenta.equals("CAJA-AHORRO")) {
-			cuentaBancaria  = new CajaAhorro( (Cliente) selectedItem, Double.parseDouble(saldo));
+			cuentaBancaria  = new CajaAhorro( (Cliente) selectedItem, Double.parseDouble(saldo), count);
 			if(!bandera) {
+				count = count + 1;
 				cuentaBancariaDAO.guardar(cuentaBancaria);
 			}
 		}else {
-			cuentaBancaria  = new CuentaCorriente( Double.parseDouble(saldo),(Cliente) selectedItem);
+			cuentaBancaria  = new CuentaCorriente( Double.parseDouble(saldo),(Cliente) selectedItem, count);
 			if(!bandera) {
+				count = count + 1;
 				cuentaBancariaDAO.guardar(cuentaBancaria);
 			}
 		}
