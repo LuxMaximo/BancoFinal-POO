@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import ar.edu.unju.fi.presenter.ClientePresenter;
 import ar.edu.unju.fi.presenter.views.IViewCliente;
 
-public class ActualizarClienteFrame extends JFrame implements IViewCliente{
+public class ActualizarClienteFrame extends JDialog implements IViewCliente{
 
 	private JPanel contentPane;
 	private JTextField textNombre;
