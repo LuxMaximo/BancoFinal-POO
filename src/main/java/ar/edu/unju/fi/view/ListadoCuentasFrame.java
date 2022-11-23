@@ -113,4 +113,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		presenter.visualizarCuentas();
 	}
 
+	public void buscarXNumeroCuenta() {
+		presenter.buscarCuentaXNumero(txtNumeroCuenta.getInt());
+	}
 }
