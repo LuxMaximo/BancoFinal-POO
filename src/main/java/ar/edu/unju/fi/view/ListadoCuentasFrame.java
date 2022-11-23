@@ -28,7 +28,8 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 	private JPanel contentPane;
 	private ListadoCuentasPresenter presenter;
 	private JTable table;
-	private JTextField textField;
+	private JTextField txtBuscarNumCuenta;
+	private JTextField txtBuscarTipoCuenta;
 
 	public JTable getTable() {
 		return table;
@@ -101,22 +102,37 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		btnNewButton_1.setBounds(693, 201, 126, 40);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Buscar");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnBuscar = new JButton("Buscar Numero de Cuenta");
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				buscarXNumeroCuenta();
 			}
 		});
-		btnNewButton_2.setBounds(594, 3, 89, 34);
-		contentPane.add(btnNewButton_2);
+		btnBuscar.setBounds(533, 3, 150, 34);
+		contentPane.add(btnBuscar);
 		
-		textField = new JTextField();
-		textField.setBounds(402, 3, 182, 34);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtBuscarNumCuenta = new JTextField();
+		txtBuscarNumCuenta.setBounds(454, 3, 73, 34);
+		contentPane.add(txtBuscarNumCuenta);
+		txtBuscarNumCuenta.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/img/banco.png")).getImage();
 		lblNewLabel.setIcon(new ImageIcon(img));
+		
+		JButton btnBuscarTipo = new JButton("Buscar Tipo de Cuenta");
+		btnBuscarTipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buscarXTipoCuenta();
+			}
+		});
+		btnBuscarTipo.setBounds(291, 6, 96, 28);
+		contentPane.add(btnBuscarTipo);
+		
+		txtBuscarTipoCuenta = new JTextField();
+		txtBuscarTipoCuenta.setBounds(172, 10, 109, 20);
+		contentPane.add(txtBuscarTipoCuenta);
+		txtBuscarTipoCuenta.setColumns(10);
 		lblNewLabel_1.setBounds(704, 236, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		presenter = new ListadoCuentasPresenter(this);
@@ -150,6 +166,11 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 	}
 
 	public void buscarXNumeroCuenta() {
-		presenter.buscarCuentaXNumero(txtNumeroCuenta.getInt());
+		Integer numCuenta = Integer.parseInt(this.txtBuscarNumCuenta.getText());
+		presenter.buscarCuentaXNumero(numCuenta);
+	}
+	
+	public void buscarXTipoCuenta() {
+		presenter.buscarCuentaXTipo(this.txtBuscarTipoCuenta.getText());
 	}
 }

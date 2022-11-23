@@ -59,4 +59,23 @@ public class ListadoCuentasPresenter {
 			model.addRow(data);
 		}
 	}
+	
+	public void buscarCuentaXTipo(String tipoCuenta) {
+		cuentaDAO = new CuentaBancariaDAOImpl(ManagerContext.getInstance().getEntityManager());
+		List<CuentaBancaria> listadoCuentas = (List<CuentaBancaria>) cuentaDAO.buscarXTipo(tipoCuenta);
+		DefaultTableModel model = (DefaultTableModel) ventanaCuentas.getTable().getModel();
+		for(CuentaBancaria cuenta : listadoCuentas) {
+			Object [] data = new Object[5];
+			data[0] = cuenta.getId();
+			data[1] = cuenta.getCliente().getNombre();
+			if (cuenta instanceof CajaAhorro) {
+				data[2] = "CAJA AHORRO";				
+			} else {
+				data[2] = "CUENTA CORRIENTE";
+			}
+			data[3] = cuenta.getNumCuenta();
+			data[4] = cuenta.getSaldo();
+			model.addRow(data);
+		}
+	}
 }
