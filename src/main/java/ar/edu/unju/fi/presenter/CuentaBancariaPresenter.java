@@ -3,6 +3,7 @@ package ar.edu.unju.fi.presenter;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 import ar.edu.unju.fi.dao.CuentaBancariaDAO;
 import ar.edu.unju.fi.dao.ClienteDAO;
@@ -27,10 +28,8 @@ public class CuentaBancariaPresenter {
 		this.clienteDAO = new ClienteDAOImpl(ManagerContext.getInstance().getEntityManager());
 	}
 	
-	public void registrarCuentaCorriente(Integer idTitular, Integer numeroCuenta, Double importeComision, double saldo) {
-		Cliente cliente = clienteDAO.buscarXID(idTitular);
-		cuentaBancaria = new CuentaCorriente(numeroCuenta, saldo,cliente);
-		cuentaBancariaDAO.guardar(cuentaBancaria);
+	public void obtenerLista() {
+		cuentaBancariaDAO.obtenerLista();
 	}
 
 	public void cargarComboTitulares() {
@@ -42,14 +41,32 @@ public class CuentaBancariaPresenter {
 		formularioAltaCuenta.getComboClientes().setModel(myModel);
 	}
 
-	public void registrarCuentaBancaria(String tipoCuenta, Object selectedItem, String numeroCuenta, String saldo) {
+	public void registrarCuentaBancaria(String tipoCuenta, Cliente selectedItem, String saldo) {
 		CuentaBancaria cuentaBancaria;
+		Cliente cliente = clienteDAO.buscarXID(selectedItem.getId());
+		Boolean bandera=false;
+		List <CuentaBancaria> ls = cuentaBancariaDAO.obtenerLista();
+		
+		//verifico si el cliente ya tiene una cuenta bancaria
+		for (CuentaBancaria listacuentas : ls) {
+			if (listacuentas.getCliente().getId() == cliente.getId()) {
+				bandera = true;
+				JOptionPane.showMessageDialog(null, "Este cliente ya tiene una cuenta bancaria");
+			}
+		}
+		
+		
+		//Verifica que tipo de cuenta eligio
 		if (tipoCuenta.equals("CAJA-AHORRO")) {
-			cuentaBancaria  = new CajaAhorro(Integer.parseInt(numeroCuenta), (Cliente) selectedItem, Double.parseDouble(saldo));
-			cuentaBancariaDAO.guardar(cuentaBancaria);
+			cuentaBancaria  = new CajaAhorro( (Cliente) selectedItem, Double.parseDouble(saldo));
+			if(!bandera) {
+				cuentaBancariaDAO.guardar(cuentaBancaria);
+			}
 		}else {
-			cuentaBancaria  = new CuentaCorriente(Integer.parseInt(numeroCuenta), Double.parseDouble(saldo),(Cliente) selectedItem);
-			cuentaBancariaDAO.guardar(cuentaBancaria);
+			cuentaBancaria  = new CuentaCorriente( Double.parseDouble(saldo),(Cliente) selectedItem);
+			if(!bandera) {
+				cuentaBancariaDAO.guardar(cuentaBancaria);
+			}
 		}
 		
 	}

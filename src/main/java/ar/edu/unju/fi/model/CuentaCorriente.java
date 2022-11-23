@@ -11,8 +11,8 @@ public class CuentaCorriente extends CuentaBancaria{
 	public CuentaCorriente() {}
 	
 
-	public CuentaCorriente(Integer numCuenta, Double saldo, Cliente cliente) {
-		super(numCuenta, saldo, cliente);
+	public CuentaCorriente(Double saldo, Cliente cliente) {
+		super(saldo, cliente);
 		this.imporComision = 500d;
 	}
 

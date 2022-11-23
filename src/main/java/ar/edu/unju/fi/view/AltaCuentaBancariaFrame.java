@@ -3,6 +3,7 @@ package ar.edu.unju.fi.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,11 +11,13 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import ar.edu.unju.fi.model.Cliente;
+import ar.edu.unju.fi.model.CuentaBancaria;
 import ar.edu.unju.fi.presenter.CuentaBancariaPresenter;
 import ar.edu.unju.fi.presenter.views.IViewCuentaBancaria;
 import java.awt.Font;
@@ -88,26 +91,14 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		contentPane.add(comboClientes);
 		
 		
-		JLabel lblNumeroCuenta = new JLabel("Numero");
-		lblNumeroCuenta.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNumeroCuenta.setBounds(82, 355, 59, 14);
-		contentPane.add(lblNumeroCuenta);	
-		
-		
-		txtNumeroCuenta = new JTextField();
-		txtNumeroCuenta.setBounds(151, 354, 104, 20);
-		contentPane.add(txtNumeroCuenta);
-		txtNumeroCuenta.setColumns(10);
-		
-		
 		JLabel lblSaldo = new JLabel("Saldo");
 		lblSaldo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblSaldo.setBounds(99, 379, 42, 14);
-		contentPane.add(lblSaldo);		
+		lblSaldo.setBounds(99, 358, 42, 14);
+		contentPane.add(lblSaldo);	
+		
+		
 		txtSaldo = new JTextField();
-		
-		
-		txtSaldo.setBounds(151, 378, 104, 20);
+		txtSaldo.setBounds(151, 357, 104, 20);
 		contentPane.add(txtSaldo);
 		txtSaldo.setColumns(10);
 		
@@ -116,7 +107,8 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				registrarCuentaBancaria();	
+
+						registrarCuentaBancaria();
 			}
 		});
 		btnGuardar.setBounds(119, 422, 136, 42);
@@ -135,8 +127,9 @@ public class AltaCuentaBancariaFrame extends JDialog implements IViewCuentaBanca
 	}
 
 	private void registrarCuentaBancaria() {
-		cuentaBancariaPresenter.registrarCuentaBancaria(comboTipoCuenta.getSelectedItem().toString(), comboClientes.getSelectedItem(), txtNumeroCuenta.getText(), txtSaldo.getText());
+		cuentaBancariaPresenter.registrarCuentaBancaria(comboTipoCuenta.getSelectedItem().toString(), (Cliente) comboClientes.getSelectedItem(), txtSaldo.getText());
 		this.dispose();
 	}
+
 
 }

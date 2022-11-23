@@ -23,9 +23,8 @@ public class CuentaBancaria {
 	
 	 public CuentaBancaria() {}
 	
-	public CuentaBancaria(Integer numCuenta, Double saldo, Cliente cliente) {
+	public CuentaBancaria(Double saldo, Cliente cliente) {
 		super();
-		this.numCuenta = numCuenta;
 		this.fechaCreacion = new Date();
 		this.saldo = saldo;
 		this.cliente = cliente;
@@ -33,6 +32,7 @@ public class CuentaBancaria {
 
 
 	//---------Getters & Setters------
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "numero_cuenta")
 	public Integer getNumCuenta() {
 		return numCuenta;
