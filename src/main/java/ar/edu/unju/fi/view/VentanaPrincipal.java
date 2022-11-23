@@ -161,7 +161,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public void mostrarCuentas() {
-		ListadoCuentasFrame listadoCuentasFrame = new ListadoCuentasFrame();
+		ListadoCuentasFrame listadoCuentasFrame = new ListadoCuentasFrame(null);
 		listadoCuentasFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		listadoCuentasFrame.setVisible(true);
 	}

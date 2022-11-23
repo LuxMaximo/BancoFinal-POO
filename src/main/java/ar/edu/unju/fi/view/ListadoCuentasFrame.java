@@ -44,7 +44,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListadoCuentasFrame frame = new ListadoCuentasFrame();
+					ListadoCuentasFrame frame = new ListadoCuentasFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class ListadoCuentasFrame extends JDialog implements IViewCuentas{
 	/**
 	 * Create the frame.
 	 */
-	public ListadoCuentasFrame() {
+	public ListadoCuentasFrame(Integer idCliente) {
 		setTitle("Listado de Cuentas Bancarias");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 916, 459);
