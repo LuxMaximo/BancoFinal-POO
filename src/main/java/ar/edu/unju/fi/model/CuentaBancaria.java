@@ -15,11 +15,11 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class CuentaBancaria {
-	private Integer id;
-	private Integer numCuenta;
-	private Date fechaCreacion;
+	protected Integer id;
+	protected Integer numCuenta;
+	protected Date fechaCreacion;
 	protected Double saldo;
-	private Cliente cliente;
+	protected Cliente cliente;
 	
 	 public CuentaBancaria() {}
 	
